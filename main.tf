@@ -89,10 +89,6 @@ module "key-vault" {
     "secret1" = var.sample_secret
   }
 
-  keys = {
-    "key1" = var.sample_public_key
-  }
-
   # Creating Private Endpoint requires, VNet name and address prefix to create a subnet
   # By default this will create a `privatelink.vaultcore.azure.net` DNS zone. 
   # To use existing private DNS zone specify `existing_private_dns_zone` with valid zone name
