@@ -115,10 +115,18 @@ data "azurerm_private_dns_zone" "dnszone1" {
 }
 
 # Create PDNSZ VNet link to kube vnet
-resource "azurerm_private_dns_zone_virtual_network_link" "pdns-vnet-link" {
+resource "azurerm_private_dns_zone_virtual_network_link" "pdns-vnet-link-kube" {
   name                  = "vnet-link-${data.terraform_remote_state.aks.outputs.kube_vnet_name}"
   resource_group_name   = data.terraform_remote_state.rg.outputs.resource_group_kube_name
   private_dns_zone_name = data.azurerm_private_dns_zone.dnszone1[0].name
+  virtual_network_id    = data.terraform_remote_state.aks.outputs.kube_vnet_id
+  registration_enabled  = false
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "pdns-vnet-link-hub" {
+  name                  = "vnet-link-${data.terraform_remote_state.aks.outputs.hub_vnet_name}"
+  resource_group_name   = data.terraform_remote_state.rg.outputs.resource_group_kube_name
+  private_dns_zone_name = data.azurerm_private_dns_zone.dnszone1[0].name
   virtual_network_id    = data.terraform_remote_state.aks.outputs.hub_vnet_id
-  registration_enabled  = true
+  registration_enabled  = false
 }
