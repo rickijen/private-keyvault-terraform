@@ -52,6 +52,7 @@ module "key-vault" {
 
   # Access policies for users, you can provide list of Azure AD users and set permissions.
   # Make sure to use list of user principal names of Azure AD users.
+  /*
   access_policies = [
     {
       azure_ad_user_principal_names = [var.keyvault_admin]
@@ -81,6 +82,7 @@ module "key-vault" {
       storage_permissions              = ["backup", "get", "list", "recover"]
     }
   ]
+  */
 
   # Create a required Secrets as per your need.
   # When you Add `usernames` with empty password this module creates a strong random password
