@@ -1,4 +1,4 @@
-variable "sample_secret" {
+variable "keyvault_admin" {
   type        = string
   description = "sample secret"
 }
