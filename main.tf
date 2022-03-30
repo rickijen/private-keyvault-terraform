@@ -98,7 +98,7 @@ module "key-vault" {
   # To use existing private DNS zone specify `existing_private_dns_zone` with valid zone name
   enable_private_endpoint = true
   existing_vnet_id        = data.terraform_remote_state.aks.outputs.kube_vnet_id
-  existing_subnet_id      = data.azurerm_subnet.example.id
+  existing_subnet_id      = data.terraform_remote_state.aks.outputs.kube_pe_subnet_id
   # existing_private_dns_zone     = "demo.example.com"
 
   log_analytics_workspace_id = data.terraform_remote_state.aks.outputs.azurerm_log_analytics_workspace_id
